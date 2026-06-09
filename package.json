@@ -4,10 +4,10 @@
   "description": "Playlist audio player web component (<taocode-audio-player>) built with Svelte",
   "license": "MIT",
   "type": "module",
-  "homepage": "https://github.com/taocode/wc-svelte-audio-player#readme",
+  "homepage": "https://github.com/taocode/audio-player#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/taocode/wc-svelte-audio-player.git"
+    "url": "https://github.com/taocode/audio-player.git"
   },
   "keywords": [
     "audio",

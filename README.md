@@ -35,8 +35,8 @@ Or load from a CDN:
 ## Development
 
 ```bash
-git clone https://github.com/taocode/wc-svelte-audio-player.git
-cd wc-svelte-audio-player
+git clone https://github.com/taocode/audio-player.git
+cd audio-player
 pnpm install
 pnpm dev      # builds the library, serves demo at http://localhost:5173/demo.html
 pnpm build    # production build → dist/index.js
