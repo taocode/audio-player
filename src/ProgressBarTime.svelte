@@ -1,3 +1,4 @@
+<svelte:options tag={null} />
 <script>
   import { getContext } from 'svelte';
   import { formatTime, contextStores as CS } from './lib'

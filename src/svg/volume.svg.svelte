@@ -1,3 +1,4 @@
+<svelte:options tag={null} />
 <script>
 	export let volume = 0.75
 </script>

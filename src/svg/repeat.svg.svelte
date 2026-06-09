@@ -1,3 +1,4 @@
+<svelte:options tag={null} />
 <script>
   export let variant = 'auto'
 </script>

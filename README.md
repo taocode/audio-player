@@ -1,53 +1,70 @@
-```js script
-import './src/index.svelte'
-```
-<div style="background: transparent;">
+# @taocode/audio-player
 
-# Playlist Audio Player Web Component
+Playlist audio player as a web component: `<taocode-audio-player>`.
 
-```html preview-story
-<div style="max-width: 300px; margin: 0 auto;">
-<taocode-audio-player skiptime="15" showskip="show" showskiptime="show" showadvance="show"
-preload="none"
- style="
- --ap-theme-h: 130;
- --ap-theme-s: 85%;
- --ap-theme-s-dark: 55%;
- --ap-theme-l: 20%;
- --ap-theme-l-dark: 45%;
- --ap-font-family-heading: fantasy;
- --ap-font-family-playlist: system-ui;"
-playlist='[
-["https://download.pariyatti.org/free/_moIbLs95/along_the_path_audio/streaming/Great_Compassion.mp3","Great Compassion",150],
-["https://download.pariyatti.org/free/_moIbLs95/along_the_path_audio/streaming/Lumbini.mp3","Lumbini",5],
-{"src":"https://download.pariyatti.org/free/_moIbLs95/Dana_The_Practice_of_Giving_single.mp3", "duration": 9375.6},
-{"src":"https://download.pariyatti.org/free/_moIbLs95/along_the_path_audio/streaming/Great_Compassion.mp3"}]'>
-</taocode-audio-player></div>
+Built with Svelte, compiled to a custom element you can drop into any site (Hugo, WordPress, plain HTML, etc.).
+
+## Install
+
+```bash
+npm install @taocode/audio-player
+# or
+pnpm add @taocode/audio-player
 ```
 
-</div>
+Register the element with a side-effect import:
+
+```js
+import '@taocode/audio-player';
+```
+
+Or load from a CDN:
+
+```html
+<script type="module" src="https://unpkg.com/@taocode/audio-player/dist/index.js"></script>
+```
+
+## Quick start
+
+```html
+<taocode-audio-player
+  playlist='[{"src":"https://example.com/track.mp3","title":"My Track","duration":180}]'
+></taocode-audio-player>
+```
+
+## Development
+
+```bash
+git clone https://github.com/taocode/wc-svelte-audio-player.git
+cd wc-svelte-audio-player
+pnpm install
+pnpm dev      # builds the library, serves demo at http://localhost:5173/demo.html
+pnpm build    # production build → dist/index.js
+```
+
+Note: `pnpm dev` uses `vite build --watch` + preview rather than Vite's dev server. Svelte custom elements with nested components cannot run through Vite HMR ([svelte#3594](https://github.com/sveltejs/svelte/issues/3594)); the demo loads the same bundled output as production.
+
+## Migration from WebComponents.dev
+
+If you used the old package:
+
+```diff
+- import "@wcd/taocode.svelte-audio-player";
++ import "@taocode/audio-player";
+```
+
+The custom element tag and attributes are unchanged.
 
 ## Features
 
-Introduces `<taocode-audio-player>` Web Component, a playlist audio player featuring a simple, clean and flexible design with useful customization options:
+- Custom colors via CSS variables on the element
+- Dark mode via reactive `mode` attribute
+- Custom fonts for heading and playlist
+- Auto advance, loop playlist, repeat one track, or none
+- Show/hide heading, transport controls, skip buttons, advance control, playlist
+- Playlist at top or bottom; collapsed, expanded, or always visible
 
-- Custom Color via CSS variables in style attribute
-- Dark mode reactive attribute
-- Custom Font for Heading and Playlist
-- Auto advance, loop entire list, repeat 1 track or none
-  - User can control this when Advance Control is shown
-- Show/Hide:
-  - Heading (title above player)
-  - Controls Row (previous, skip back, play/pause, skip forward, next)
-    - skip back and forward can be hidden
-    - skip time is hidden by default
-  - Advance Control
-  - Playlist and Playlist Expand Control
-- Playlist can appear at the top or bottom
-
-### Built With Svelte and WebComponents.dev
-
-Svelte makes this a trivial task without adding overhead. 
+Built with Svelte and compiled with Vite (no WebComponents.dev required).
 
 ## Attributes
 
@@ -115,13 +132,13 @@ playlist='[
 ### Title of Tracks
 
 1. Title value provided via Playlist Option 3
-1. Filename - what comes after the last '/' in the src URL, with some standard clean-up: remove extension (.mp3,.mp4,.aac,...) and query string, #hash, convert `(_|%20|-)` -> ' '
+2. Filename - what comes after the last '/' in the src URL, with some standard clean-up: remove extension (.mp3,.mp4,.aac,...) and query string, #hash, convert `(_|%20|-)` -> ' '
 
 ### Duration of Tracks
 
 Providing the duration of each track is highly recommended. It is only a placeholder value until the file is actually loaded.
 
-If you do not supply the duration of the track the player will fetch the audio files on initialization and load the metadata. The  duration of each track is updated with the actual value from the file upon successful load. Providing the initial duration can save `n` requests and 100s of kilobytes of bandwidth where `n` is the number of tracks.
+If you do not supply the duration of the track the player will fetch the audio files on initialization and load the metadata. The duration of each track is updated with the actual value from the file upon successful load. Providing the initial duration can save `n` requests and 100s of kilobytes of bandwidth where `n` is the number of tracks.
 
 ### `advance`
 
@@ -204,17 +221,17 @@ The show attributes all accept any of these expressions that override their defa
 
 ### Show - Start Showing/Expanded
 
-- ['1','true','show','yes','please']
+- `1`, `true`, `show`, `yes`, `please`
 
 ### Hide - Start Hidden 
 
-- ['0','false','hide','no','none']
+- `0`, `false`, `hide`, `no`, `none`
 
 *Note that invalid values will fallback on their default.
 
 ### `randomhue`
 
-Provide a random hue, from 0-360 for HSL color. Useful for those lit html stories that ignore/strip the `style` attribute.
+Provide a random hue, from 0-360 for HSL color.
 
 default: `false`
 
@@ -229,10 +246,10 @@ defaults:
 - `--ap-theme-s: 75%;`
 - `--ap-theme-s-dark: 65%;` 
 - `--ap-theme-l: 25%;`
-- `--ap-theme-s-dark: 45%;` 
+- `--ap-theme-l-dark: 45%;` 
 - `--ap-playlist-max-h: 6em;`
 
-The max-h option could be 'none' which may be helpful if you wanted to show all tracks with no scroller. 6em will usually show 3 tracks unless they've word-wrapped into 2+ lines.
+The max-h option could be `none` which may be helpful if you wanted to show all tracks with no scroller. 6em will usually show 3 tracks unless they've word-wrapped into 2+ lines.
 
 ```html
 <taocode-audio-player style="
@@ -243,8 +260,14 @@ The max-h option could be 'none' which may be helpful if you wanted to show all 
   --ap-playlist-max-h: none;
   --ap-font-family-heading: fantasy, cursive;
   --ap-font-family-playlist: system-ui;
-  --ap-playlist-max-h: none;
 "></taocode-audio-player>
 ```
 
-You can achieve a lot of different looks just by hiding different parts. Enjoy!
+## Supersedes
+
+This project replaces earlier experiments archived on GitHub:
+
+- `svelte-multitrack-audio-player` (WCD starter template)
+- `svelte-audio-player` (SvelteKit prototype)
+- `plainjs-audio-player` (vanilla JS prototype)
+- npm package `@wcd/taocode.svelte-audio-player` (WebComponents.dev publish)

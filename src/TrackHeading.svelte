@@ -1,3 +1,4 @@
+<svelte:options tag={null} />
 <script>
   import { getContext } from 'svelte'
   import { contextStores as CS, trackTitle } from './lib'

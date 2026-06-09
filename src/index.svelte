@@ -20,6 +20,7 @@
 	import XIcon from './svg/x.svg.svelte'
 
 	export let playlist
+	export let style = ''
 	export let skiptime = 10
 	export let showskiptime = 'hide'
 	export let showskip = 'hide'
@@ -305,7 +306,7 @@
 	$: ldS = `--theme-s: var(--ap-theme-s${dSufx},var(--ap-theme-s,${$dark?'65%':'75%'}));`
 	$: ldL = `--theme-l: var(--ap-theme-l${dSufx},var(--ap-theme-l,${$dark?'50%':'25%'}));`
 	$: backgroundBWa = $dark ? '#000e' : '#FFFe'
-	$: style = `
+	$: playerStyle = `
 	--background-bwa: ${backgroundBWa};
 	--color-warn: hsl(32, 100%, 45%);
 	--background-warn: hsla(32, 100%, 65%, 0.2);
@@ -317,10 +318,11 @@
 	${ldL}
 	--audio-player-color: hsl( var(--theme-h), var(--theme-s), var(--theme-l) );
 	--audio-player-background-semi: hsla( var(--theme-h), var(--theme-s), var(--theme-l), 0.12 );
+	${style}
 `
 </script>
 
-<div {style}>
+<div style={playerStyle}>
 {#if $tracks < 1}
 <div class="error-no-playlist">
 	<h2>No Playlist!</h2>

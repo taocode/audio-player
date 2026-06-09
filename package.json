@@ -1,19 +1,51 @@
 {
-  "name": "@wcd/taocode.svelte-audio-player",
-  "version": "0.14.0",
-  "description": "",
-  "license": "ISC",
+  "name": "@taocode/audio-player",
+  "version": "1.0.0",
+  "description": "Playlist audio player web component (<taocode-audio-player>) built with Svelte",
+  "license": "MIT",
   "type": "module",
-  "homepage": "{{ homepage }}",
-  "scripts": {
-    "build:readme": "node ./_readmecp.js",
-    "dev": "pnpx wcd-cli@latest serve wpsgjENLAcAH6CMeL78q --open",
-    "serve": "npx wcd-cli@latest serve wpsgjENLAcAH6CMeL78q --open"
+  "homepage": "https://github.com/taocode/wc-svelte-audio-player#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taocode/wc-svelte-audio-player.git"
   },
-  "dependencies": {
-    "lit-html": "^2"
+  "keywords": [
+    "audio",
+    "audio-player",
+    "playlist",
+    "svelte",
+    "web-component",
+    "custom-element"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "scripts": {
+    "dev": "vite build && concurrently -k \"vite build --watch --mode development\" \"vite preview\"",
+    "build": "vite build --mode production",
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "svelte": "^3.55.0"
-  }
+    "@sveltejs/vite-plugin-svelte": "^2.5.3",
+    "concurrently": "^9.1.2",
+    "svelte": "^3.59.2",
+    "vite": "^5.4.21"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
 }

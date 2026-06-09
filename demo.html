@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>taocode-audio-player demo</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 28rem;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Playlist demo</h1>
+    <taocode-audio-player
+      skiptime="15"
+      showskip="show"
+      showskiptime="show"
+      showadvance="show"
+      preload="none"
+      style="
+        --ap-theme-h: 130;
+        --ap-theme-s: 85%;
+        --ap-theme-s-dark: 55%;
+        --ap-theme-l: 20%;
+        --ap-theme-l-dark: 45%;
+        --ap-font-family-heading: fantasy;
+        --ap-font-family-playlist: system-ui;
+      "
+      playlist='[
+        ["https://download.pariyatti.org/free/_moIbLs95/along_the_path_audio/streaming/Great_Compassion.mp3","Great Compassion",150],
+        ["https://download.pariyatti.org/free/_moIbLs95/along_the_path_audio/streaming/Lumbini.mp3","Lumbini",5]
+      ]'
+    ></taocode-audio-player>
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>

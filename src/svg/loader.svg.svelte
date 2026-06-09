@@ -1,3 +1,4 @@
+<svelte:options tag={null} />
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.66" stroke-linecap="round" stroke-linejoin="round" class="feather feather-loader">
   <line x1="12" y1="2" x2="12" y2="6"></line>
   <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>

@@ -1,3 +1,4 @@
+<svelte:options tag={null} />
 <script>
   import { getContext } from 'svelte'
 
